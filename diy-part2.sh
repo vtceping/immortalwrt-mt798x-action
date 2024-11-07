@@ -27,8 +27,8 @@ sed -i 's/192.168.1.1/192.168.5.2/g' package/base-files/files/bin/config_generat
 # sed -i '/customized in this file/a net.netfilter.nf_conntrack_max=65535' package/base-files/files/etc/sysctl.conf
 
 # golang 1.23
-rm -rf feeds/packages/lang/golang
-git clone --depth=1 https://github.com/sbwml/packages_lang_golang feeds/packages/lang/golang
+# rm -rf feeds/packages/lang/golang
+# git clone --depth=1 https://github.com/sbwml/packages_lang_golang feeds/packages/lang/golang
 
 # ppp - 2.5.1
 # rm -rf package/network/services/ppp
@@ -46,5 +46,5 @@ git clone --depth=1 https://github.com/sbwml/packages_lang_golang feeds/packages
 # find package/*/ -maxdepth 2 -path "*/Makefile" | xargs -i sed -i 's/PKG_SOURCE_URL:=@GHREPO/PKG_SOURCE_URL:=https:\/\/github.com/g' {}
 # find package/*/ -maxdepth 2 -path "*/Makefile" | xargs -i sed -i 's/PKG_SOURCE_URL:=@GHCODELOAD/PKG_SOURCE_URL:=https:\/\/codeload.github.com/g' {}
 
-./scripts/feeds update -a
-./scripts/feeds install -a
+# ./scripts/feeds update -a
+# ./scripts/feeds install -a

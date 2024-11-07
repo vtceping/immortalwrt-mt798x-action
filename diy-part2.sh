@@ -14,25 +14,25 @@
 sed -i 's/192.168.1.1/192.168.5.2/g' package/base-files/files/bin/config_generate
 
 # Add luci-app
-rm -rf feeds/smpackage/{base-files,dnsmasq,firewall*,fullconenat,libnftnl,nftables,ppp,opkg,ucl,upx,vsftpd-alt,miniupnpd-iptables,wireless-regdb}
-rm -rf feeds/other/{luci-app-adguardhome,luci-app-dockerman}
-rm -rf feeds/lienol/luci-app-fileassistant && rm -rf feeds/packages/net/{adguardhome,smartdns}
-rm -rf feeds/packages/net/{xray-core,v2ray-core,v2ray-geodata,sing-box,pdnsd-alt,brook,chinadns-ng,dns2socks,dns2tcp,gn,hysteria,ipt2socks,microsocks,naiveproxy,shadowsocks-rust,shadowsocksr-libev,simple-obfs,tcping,trojan,trojan-go,trojan-plus,tuic-client,v2ray-plugin,xray-plugin,gn}
-rm -rf package/passwall-packages/{chinadns-ng,naiveproxy,shadowsocks-rust,v2ray-geodata}
-rm -rf feeds/luci/themes/luci-theme-argon
-git clone --depth=1 https://github.com/jerrykuku/luci-theme-argon package/luci-theme-argon
-merge_package main https://github.com/sbwml/luci-theme-argon feeds/luci/themes luci-theme-argon
+# rm -rf feeds/smpackage/{base-files,dnsmasq,firewall*,fullconenat,libnftnl,nftables,ppp,opkg,ucl,upx,vsftpd-alt,miniupnpd-iptables,wireless-regdb}
+# rm -rf feeds/other/{luci-app-adguardhome,luci-app-dockerman}
+# rm -rf feeds/lienol/luci-app-fileassistant && rm -rf feeds/packages/net/{adguardhome,smartdns}
+# rm -rf feeds/packages/net/{xray-core,v2ray-core,v2ray-geodata,sing-box,pdnsd-alt,brook,chinadns-ng,dns2socks,dns2tcp,gn,hysteria,ipt2socks,microsocks,naiveproxy,shadowsocks-rust,shadowsocksr-libev,simple-obfs,tcping,trojan,trojan-go,trojan-plus,tuic-client,v2ray-plugin,xray-plugin,gn}
+# rm -rf package/passwall-packages/{chinadns-ng,naiveproxy,shadowsocks-rust,v2ray-geodata}
+# rm -rf feeds/luci/themes/luci-theme-argon
+# git clone --depth=1 https://github.com/jerrykuku/luci-theme-argon package/luci-theme-argon
+# merge_package main https://github.com/sbwml/luci-theme-argon feeds/luci/themes luci-theme-argon
 
 # 最大连接数修改为65535
-sed -i '/customized in this file/a net.netfilter.nf_conntrack_max=65535' package/base-files/files/etc/sysctl.conf
+# sed -i '/customized in this file/a net.netfilter.nf_conntrack_max=65535' package/base-files/files/etc/sysctl.conf
 
 # golang 1.23
 rm -rf feeds/packages/lang/golang
 git clone --depth=1 https://github.com/sbwml/packages_lang_golang feeds/packages/lang/golang
 
 # ppp - 2.5.1
-rm -rf package/network/services/ppp
-git clone https://github.com/sbwml/package_network_services_ppp package/network/services/ppp
+# rm -rf package/network/services/ppp
+# git clone https://github.com/sbwml/package_network_services_ppp package/network/services/ppp
 
 # 精简 UPnP 菜单名称
 # sed -i 's#\"title\": \"UPnP IGD \& PCP/NAT-PMP\"#\"title\": \"UPnP\"#g' feeds/luci/applications/luci-app-upnp/root/usr/share/luci/menu.d/luci-app-upnp.json
@@ -41,10 +41,10 @@ git clone https://github.com/sbwml/package_network_services_ppp package/network/
 # sed -i 's/+libpcre \\$/+libpcre2 \\/g' package/feeds/telephony/freeswitch/Makefile
 
 # 修正部分从第三方仓库拉取的软件 Makefile 路径问题
-find package/*/ -maxdepth 2 -path "*/Makefile" | xargs -i sed -i 's/..\/..\/luci.mk/$(TOPDIR)\/feeds\/luci\/luci.mk/g' {}
-find package/*/ -maxdepth 2 -path "*/Makefile" | xargs -i sed -i 's/..\/..\/lang\/golang\/golang-package.mk/$(TOPDIR)\/feeds\/packages\/lang\/golang\/golang-package.mk/g' {}
-find package/*/ -maxdepth 2 -path "*/Makefile" | xargs -i sed -i 's/PKG_SOURCE_URL:=@GHREPO/PKG_SOURCE_URL:=https:\/\/github.com/g' {}
-find package/*/ -maxdepth 2 -path "*/Makefile" | xargs -i sed -i 's/PKG_SOURCE_URL:=@GHCODELOAD/PKG_SOURCE_URL:=https:\/\/codeload.github.com/g' {}
+# find package/*/ -maxdepth 2 -path "*/Makefile" | xargs -i sed -i 's/..\/..\/luci.mk/$(TOPDIR)\/feeds\/luci\/luci.mk/g' {}
+# find package/*/ -maxdepth 2 -path "*/Makefile" | xargs -i sed -i 's/..\/..\/lang\/golang\/golang-package.mk/$(TOPDIR)\/feeds\/packages\/lang\/golang\/golang-package.mk/g' {}
+# find package/*/ -maxdepth 2 -path "*/Makefile" | xargs -i sed -i 's/PKG_SOURCE_URL:=@GHREPO/PKG_SOURCE_URL:=https:\/\/github.com/g' {}
+# find package/*/ -maxdepth 2 -path "*/Makefile" | xargs -i sed -i 's/PKG_SOURCE_URL:=@GHCODELOAD/PKG_SOURCE_URL:=https:\/\/codeload.github.com/g' {}
 
 ./scripts/feeds update -a
 ./scripts/feeds install -a

@@ -23,9 +23,9 @@ env:
   #REPO_URL: https://github.com/coolsnowwolf/lede
   #REPO_URL: https://github.com/ZirrorDmage/immortalwrt-mt798x
   #REPO_URL: https://github.com/hanwckf/immortalwrt-mt798x
-  REPO_URL: https://github.com/immortalwrt/immortalwrt.git
+  REPO_URL: https://github.com/padavanonly/immortalwrt-mt798x-24.10
   #REPO_BRANCH: master
-  REPO_BRANCH: v23.05.3
+  REPO_BRANCH: 2410
   FEEDS_CONF: feeds.conf.default
   CONFIG_FILE: .config
   DIY_P1_SH: diy-part1.sh

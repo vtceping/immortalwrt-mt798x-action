@@ -23,6 +23,20 @@ sed -i 's/192.168.1.1/192.168.5.1/g' package/base-files/files/bin/config_generat
 # git clone --depth=1 https://github.com/jerrykuku/luci-theme-argon package/luci-theme-argon
 # merge_package main https://github.com/sbwml/luci-theme-argon feeds/luci/themes luci-theme-argon
 
+# ------------------PassWall 科学上网--------------------------
+# 移除 openwrt feeds 自带的核心库
+rm -rf feeds/packages/net/{xray-core,v2ray-geodata,sing-box,chinadns-ng,dns2socks,hysteria,ipt2socks,microsocks,naiveproxy,shadowsocks-libev,shadowsocks-rust,shadowsocksr-libev,simple-obfs,tcping,trojan-plus,tuic-client,v2ray-plugin,xray-plugin,geoview}
+# 核心库
+git clone https://github.com/xiaorouji/openwrt-passwall-packages package/passwall-packages
+rm -rf package/passwall-packages/{shadowsocks-rust,v2ray-geodata}
+merge_package v5 https://github.com/sbwml/openwrt_helloworld package/passwall-packages shadowsocks-rust v2ray-geodata
+# app
+rm -rf feeds/luci/applications/{luci-app-passwall,luci-app-ssr-libev-server}
+# git clone https://github.com/lwb1978/openwrt-passwall package/passwall-luci
+git clone https://github.com/xiaorouji/openwrt-passwall package/passwall-luci
+# ------------------------------------------------------------
+
+
 # 最大连接数修改为65535
 # sed -i '/customized in this file/a net.netfilter.nf_conntrack_max=65535' package/base-files/files/etc/sysctl.conf
 

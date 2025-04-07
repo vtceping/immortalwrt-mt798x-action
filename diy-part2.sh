@@ -38,7 +38,7 @@ git clone https://github.com/xiaorouji/openwrt-passwall package/passwall-luci
 
 
 # 最大连接数修改为65535
-sed -i '/customized in this file/a net.netfilter.nf_conntrack_max=65535' package/base-files/files/etc/sysctl.conf
+# sed -i '/customized in this file/a net.netfilter.nf_conntrack_max=65535' package/base-files/files/etc/sysctl.conf
 
 # golang 1.23
 rm -rf feeds/packages/lang/golang
